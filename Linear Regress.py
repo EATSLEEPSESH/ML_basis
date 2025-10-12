@@ -31,7 +31,7 @@ Y = df[TARGET]
 X_train, X_test, Y_train, Y_test = train_test_split(
     X, Y,
     test_size=0.20,
-    random_state=42,
+    random_state=None,
     stratify=X[CAT_COL]
 )
 
@@ -180,7 +180,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
 #    print(f"Epoch {epoch:02d} | train MSE: {epoch_loss:.4f}")
 
 # 1) Делим исходный train на sub-train / val (например, 80/20)
-ss = ShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
+ss = ShuffleSplit(n_splits=1, test_size=0.2, random_state=None)
 (train_idx, val_idx) = next(ss.split(X_train_tensor))
 
 X_subtrain = X_train_tensor[train_idx]
